@@ -45,5 +45,6 @@ jobs:
           echo "${{ secrets.GRADLE_ENTERPRISE_ACCESS_KEY }}" > /root/.gradle/enterprise/keys.properties
       - name: Test
         run: |
+          whoami
           ./gradlew --version
           ./gradlew --scan --no-parallel --warning-mode=all -Dplatform.tooling.support.tests.enabled=true --info -Porg.gradle.java.installations.auto-download=false -PjavaToolchainVersion=${{ matrix.jdk }} build "-Dscan.tag.JDK_${{ matrix.jdk }}"
